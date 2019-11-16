@@ -1,4 +1,4 @@
-OBJ = game.o main.o
+OBJ = game.o main.o sprite.o
 OUT = game
 LIBS = -lSDL2
 
@@ -10,6 +10,9 @@ game.o : game.cpp game.h
 
 main.o : main.cpp game.h
 	$(CXX) -c main.cpp
+
+sprite.o : sprite.cpp sprite.h math.h
+	$(CXX) -c sprite.cpp
 
 .PHONY : clean
 clean:

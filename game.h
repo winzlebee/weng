@@ -4,27 +4,23 @@
 #include <exception>
 
 struct SDL_Window;
-struct SDL_Surface;
+struct SDL_Renderer;
 
 namespace weng {
 
 class InitException : std::exception {
 public:
-    const char* what() const noexcept;
+    const char* what() const noexcept override;
+};
+
+class ImageException : std::exception {
+public:
+    const char* what() const noexcept override;
 };
 
 struct GameSettings {
     const int SCREEN_WIDTH = 1280;
     const int SCREEN_HEIGHT = 720;
-};
-
-struct Sprite {
-public:
-    // Construct a sprite from 
-    Sprite(const char *name, const char *location);
-
-private:
-    //SDL_Texture *texture;
 };
 
 class Game {
@@ -38,8 +34,8 @@ public:
     void loop();
 
 private:
-    SDL_Window *window = nullptr;
-    SDL_Surface *mainSurface = nullptr;
+    SDL_Window *m_window = nullptr;
+    SDL_Renderer *m_renderer = nullptr;
 
     bool m_init = false;
     bool m_quit = false;

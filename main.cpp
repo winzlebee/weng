@@ -11,7 +11,14 @@ int main(int argc, char **argv) {
     try {
         g.begin();
     } catch (const weng::InitException &ex) {
+
+        // Error during initialization
         std::cerr << ex.what();
+        return 1;
+    } catch (const weng::ImageException &imgEx) {
+
+        // Error loading and using an image file
+        std::cerr << imgEx.what();
         return 1;
     }
 
