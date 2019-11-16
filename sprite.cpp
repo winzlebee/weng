@@ -2,7 +2,6 @@
 
 #include "sprite.h"
 
-
 namespace weng {
 
 }

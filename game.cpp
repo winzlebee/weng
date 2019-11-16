@@ -13,10 +13,6 @@ const char* ImageException::what() const noexcept {
         return IMG_GetError();
 }
 
-Sprite::Sprite(const char *name, const char *location) {
-    
-}
-
 Game::~Game() {
     if (m_init) {
         SDL_DestroyRenderer(m_renderer);
