@@ -3,10 +3,21 @@
 
 #include "game.h"
 
+void init(weng::Game *game) {
+    // Called when the game is setup and before rendering begins
+    weng::Sprite test("Player", "sprite_sheet.png");
+    game->addSprite(test);
+}
+
+void update(weng::Game *game) {
+    // Update is called once per frame
+
+}
+
 int main(int argc, char **argv) {
 
     // Create a game and start it.
-    weng::Game g;
+    weng::Game g("Win's Game", &init, &update);
 
     try {
         g.begin();

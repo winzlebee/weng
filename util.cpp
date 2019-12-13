@@ -24,6 +24,8 @@ Transform2D::Transform2D(const Vec2 &_p, const float _r, Transform2D *parent)
 
 Transform2D::Transform2D(const Vec2 &_p, Transform2D *parent) : Transform2D(_p, 0, parent) {}
 
+Transform2D::Transform2D(Transform2D *parent) : Transform2D(Vec2::identity(), parent) {}
+
 Transform2D::~Transform2D() {
     // Detach all child transforms to point to nowhere
     for (auto *child : m_children) {
@@ -50,6 +52,15 @@ const Vec2 Transform2D::getWorldPosition() const {
     }
 
     return finalPosition;
+}
+
+void Transform2D::translate(float x, float y) {
+    m_pos.x() += x;
+    m_pos.y() += y;
+}
+
+void Transform2D::rotateBy(float angle) {
+    m_rot = std::fmod(m_rot + angle, 360.0f);
 }
 
 }

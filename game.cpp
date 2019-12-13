@@ -23,13 +23,18 @@ Game::~Game() {
     }
 }
 
+void Game::addSprite(Sprite &s) {
+    s.load(m_renderer);
+    m_sprites.push_back(s);
+}
+
 void Game::begin() {
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         throw InitException();
     }
 
-    m_window = SDL_CreateWindow("Game"
+    m_window = SDL_CreateWindow(m_name
         , SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED
         , settings.SCREEN_WIDTH, settings.SCREEN_HEIGHT
         , SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
@@ -51,6 +56,8 @@ void Game::begin() {
     if (!(IMG_Init(imgFlags) & imgFlags)) {
         throw ImageException();
     }
+    
+    f_init(this);
 
     loop();
 }
@@ -71,7 +78,11 @@ void Game::loop() {
         SDL_SetRenderDrawColor(m_renderer, 0, 0, 127, 0xFF);
         SDL_RenderClear(m_renderer);
 
-        
+        for (const Sprite &s : m_sprites) {
+            s.render(m_renderer);
+        }
+
+        SDL_RenderPresent( m_renderer );        
     }
 }
 

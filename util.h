@@ -92,15 +92,28 @@ public:
     // Declare a 2D transform with a position
     Transform2D(const Vec2 &_p, Transform2D *parent = nullptr);
 
+    // Declare a 2D transform wtihout any parameters
+    Transform2D(Transform2D *parent = nullptr);
+
     ~Transform2D();
 
     Transform2D *getParent() const { return m_parent; }
+
+    void setParent( Transform2D *parent ) { m_parent = parent; }
 
     const std::vector<Transform2D*> getChildren() const { return m_children; }
     
     const Vec2 &getLocalPosition() const { return m_pos; }
 
     const float &getRotation() const { return m_rot; }
+
+    void setLocalPosition(const Vec2 &pos) { m_pos = pos; };
+
+    void setRotation(const float rotation) { m_rot = rotation; };
+
+    void translate(float x, float y);
+
+    void rotateBy(float angle);
 
     const Vec2 getWorldPosition() const;
 
