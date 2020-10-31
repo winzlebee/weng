@@ -18,14 +18,12 @@ public:
     Sprite(const char *name, const char *filename);
     ~Sprite();
 
-    // Get the transform assosciated with this sprite
-    const Transform2D &getTransform() { return m_transform; }
+    Transform2D transform;
 
 private:
     void load(SDL_Renderer *renderer);
     void render(SDL_Renderer *renderer) const;
 
-    Transform2D m_transform;
 
     std::string m_name;
     std::string m_file;

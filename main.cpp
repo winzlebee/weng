@@ -1,12 +1,15 @@
 #include <iostream>
 #include <exception>
 
-#include "game.h"
+#include "weng/game.h"
+#include "weng/util.h"
 
 void init(weng::Game *game) {
     // Called when the game is setup and before rendering begins
-    weng::Sprite test("Player", "sprite_sheet.png");
-    game->addSprite(test);
+    weng::Sprite playerSprite("Player", "sprite_sheet.png");
+    playerSprite.transform = weng::Transform2D(weng::Vec2(200, 200));
+
+    game->addSprite(playerSprite);
 }
 
 void update(weng::Game *game) {

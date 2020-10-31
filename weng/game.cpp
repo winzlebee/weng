@@ -69,6 +69,12 @@ void Game::loop() {
     while (!m_quit) {
         // Input event processing
         while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_KEYDOWN) {
+                if (event.key.keysym.sym = SDLK_q) {
+                    m_quit = true;
+                }
+            }
+
             if (event.type == SDL_QUIT) {
                 m_quit = true;
             }
